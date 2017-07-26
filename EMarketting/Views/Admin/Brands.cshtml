@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Brands";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<style>
+    .one {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-right: 100px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
+</style>
+<div class="container" ng-init="GetAllBrands()">
+    <div class="one">
+        <h1 class="page-header">Markalar <small>Marka İşlemleri</small></h1>
+    </div>
+    <div class="one">
+        <div>
+            <input type="text" placeholder="Arama" ng-model="bra" />
+        </div>
+        <table class="table table-bordered table-hover table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Marka Ad</th>
+                    <th>Detay</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="b in brands | filter : bra">
+                    <td>{{b.MarkaAd}}</td>
+                    <td><span class="btn btn-success glyphicon glyphicon-camera" ng-click="GetBrandByBrandID(b.MarkaID)"></span></td>
+                    <td><span class="btn btn-danger glyphicon glyphicon-remove" ng-click="BrandDelete(b.MarkaID)"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="one">
+        <table class="table table-bordered table-hover table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Marka ID</th>
+                    <th>Marka Ad</th>
+                    <th>Güncelle/Kaydet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{brand.MarkaID}}</td>
+                    <td><input type="text" ng-model="brand.MarkaAd" /></td>
+                    <td><span class="btn btn-info glyphicon glyphicon-floppy-save" ng-click="BrandEdit(brand)"></span></td>
+                </tr>
+                <tr>
+                    <th>Yeni Giriş</th>
+                    <td><input type="text" ng-model="brandadd.MarkaAd" /></td>
+                    <td><span class="btn btn-info glyphicon glyphicon-floppy-saved" ng-click="BrandAdd(brandadd)"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

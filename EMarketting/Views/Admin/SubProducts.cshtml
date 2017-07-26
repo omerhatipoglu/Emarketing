@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "SubProducts";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<style>
+    td {
+        height: 40px;
+    }
+    .one {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-right: 100px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
+</style>
+<div class="container" ng-init="GetAllSubProducts()">
+    <div class="one">
+        <h1 class="page-header">Alt Ürünler <small>Alt Ürün İşlemleri</small></h1>
+    </div>
+    <div class="one">
+        <div>
+            <input type="text" placeholder="Arama" ng-model="subpro" />
+        </div>
+        <table class="table table-bordered table-hover table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Alt Ürün Ad</th>
+                    <th>Ürün Ad</th>
+                    <th>Marka Ad</th>
+                    <th>Fiyat</th>
+                    <th>Stok Adeti</th>
+                    <th>Urun Açıklama</th>
+                    <th>Resim Adresi</th>
+                    <th>Resim2 Adresi</th>
+                    <th>Kampanya</th>
+                    <th>Satılan Adet</th>
+                    <th>Tıklama Sayısı</th>
+                    <th>Sipariş Adeti</th>
+                    <th>Detay</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="s in subproducts | filter : subpro">
+                    <td>{{s.AltUrunlerAd}}</td>
+                    <td>{{s.UrunlerAd}}</td>
+                    <td>{{s.MarkaAd}}</td>
+                    <td>{{s.Fiyat}}</td>
+                    <td>{{s.StokAdeti}}</td>
+                    <td>{{s.Aciklama}}</td>
+                    <td>{{s.Resim}}</td>
+                    <td>{{s.Resim2}}</td>
+                    <td>{{s.Kampanya}}</td>
+                    <td>{{s.SatilanAdet}}</td>
+                    <td>{{s.TiklamaSayisi}}</td>
+                    <td>{{s.SiparisAdet}}</td>
+                    <td><span class="btn btn-success glyphicon glyphicon-camera" ng-click="GetSubProductBySubProductID(s.AltUrunlerID)"></span></td>
+                    <td><span class="btn btn-danger glyphicon glyphicon-remove" ng-click="SubProDelete(s.AltUrunlerID)"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="one" ng-init="GetAllProducts()">
+        <div ng-init="GetAllBrands()">
+            <table class="table table-bordered table-hover table-responsive table-striped">
+                <tr>
+                    <th>Alt Ürün ID</th>
+                    <td>{{subproduct.AltUrunlerID}}</td>
+                </tr>
+                <tr>
+                    <th>Alt Ürün Ad</th>
+                    <td><input type="text" ng-model="subproduct.AltUrunlerAd" /></td>
+                </tr>
+                <tr>
+                    <th>Ürün Ad</th>
+                    <td><select ng-options="item.UrunlerID as item.UrunlerAd for item in products" ng-model="subproduct.UrunlerID"><option value=""></option></select></td>
+                </tr>
+                <tr>
+                    <th>Marka Ad</th>
+                    <td><select ng-options="item.MarkaID as item.MarkaAd for item in brands" ng-model="subproduct.MarkaID"><option value=""></option></select></td>
+                </tr>
+                <tr>
+                    <th>Fiyat</th>
+                    <td><input type="text" ng-model="subproduct.Fiyat" /></td>
+                </tr>
+                <tr>
+                    <th>Stok Adeti</th>
+                    <td><input type="text" ng-model="subproduct.StokAdeti" /></td>
+                </tr>
+                <tr>
+                    <th>Açıklama</th>
+                    <td><input type="text" ng-model="subproduct.Aciklama" /></td>
+                </tr>
+                <tr>
+                    <th>Resim</th>
+                    <td><input type="text" ng-model="subproduct.Resim" /></td>
+                </tr>
+                <tr>
+                    <th>Resim2</th>
+                    <td><input type="text" ng-model="subproduct.Resim2" /></td>
+                </tr>
+                <tr>
+                    <th>Kampanya</th>
+                    <td><input type="checkbox" ng-model="subproduct.Kampanya" /></td>
+                </tr>
+                <tr>
+                    <th>Reklamlı Ürün</th>
+                    <td><input type="checkbox" ng-model="subproduct.Reklam" /></td>
+                </tr>
+                <tr>
+                    <th>Sezon Sonu Ürün</th>
+                    <td><input type="checkbox" ng-model="subproduct.SezonSonu" /></td>
+                </tr>
+                <tr>
+                    <th>Satılan Adet</th>
+                    <td>{{subproduct.SatilanAdet}}</td>
+                </tr>
+                <tr>
+                    <th>Tıklama Sayısı</th>
+                    <td>{{subproduct.TiklamaSayisi}}</td>
+                </tr>
+                <tr>
+                    <th>Sipariş Adeti</th>
+                    <td>{{subproduct.SiparisAdet}}</td>
+                </tr>
+                <tr>
+                    <th>Güncelle/Kaydet</th>
+                    <td><span class="btn btn-info glyphicon glyphicon-floppy-save" ng-click="SubProEdit(subproduct)"></span></td>
+                </tr>
+                <tr>
+                    <th>Yeni Kayıt</th>
+                    <td><span class="btn btn-info glyphicon glyphicon-floppy-saved" ng-click="SubProAdd(subproduct)"></span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

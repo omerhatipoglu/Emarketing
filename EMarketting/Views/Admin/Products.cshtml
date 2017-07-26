@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<style>
+    .one {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-right: 100px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
+</style>
+<div class="container" ng-init="GetAllProducts()">
+    <div class="one">
+        <h1 class="page-header">Ürünler <small>Ürün İşlemleri</small></h1>
+    </div>
+    <div class="one">
+        <div>
+            <input type="text" placeholder="Arama" ng-model="pro" />
+        </div>
+        <table class="table table-bordered table-hover table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Ürün Ad</th>
+                    <th>Alt Kategori</th>
+                    <th>Detay</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="p in products | filter : pro">
+                    <td>{{p.UrunlerAd}}</td>
+                    <td>{{p.AltKategoriAd}}</td>
+                    <td><span class="btn btn-success glyphicon glyphicon-camera" ng-click="GetProductByProductID(p.UrunlerID)"></span></td>
+                    <td><span class="btn btn-danger glyphicon glyphicon-remove" ng-click="ProDelete(p.UrunlerID)"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="one" ng-init="GetAllSubCategories()">
+        <table class="table table-bordered table-hover table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Ürün ID</th>
+                    <th>Ürün Ad</th>
+                    <th>Alt Kategori</th>
+                    <th>Güncelle/Kaydet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{product.UrunlerID}}</td>
+                    <td><input type="text" ng-model="product.UrunlerAd" /></td>
+                    <td><select ng-options="item.AltKategoriID as item.AltKategoriAd for item in subcategories" ng-model="product.AltKategoriID"><option value=""></option></select></td>
+                    <td><span class="btn btn-info glyphicon glyphicon-floppy-save" ng-click="ProEdit(product)"></span></td>
+                </tr>
+                <tr>
+                    <th>Yeni Giriş</th>
+                    <td><input type="text" ng-model="productadd.UrunlerAd" /></td>
+                    <td><select ng-options="item.AltKategoriID as item.AltKategoriAd for item in subcategories" ng-model="productadd.AltKategoriID"><option value=""></option></select></td>
+                    <td><span class="btn btn-info glyphicon glyphicon-floppy-saved" ng-click="ProAdd(productadd)"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

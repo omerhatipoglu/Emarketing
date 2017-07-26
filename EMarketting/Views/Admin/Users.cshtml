@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<style>
+    .one {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-right: 100px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
+</style>
+<div class="container" ng-init="GetAllUsers()">
+    <div class="one">
+        <h1 class="page-header">Kullanıcılar <small>Kullanıcı İşlemleri</small></h1>
+    </div>
+    <div class="one">
+        <div>
+            <input type="text" placeholder="Arama" ng-model="us" />
+        </div>
+        <table class="table table-bordered table-hover table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Tel No</th>
+                    <th>Şifre</th>
+                    <th>Eposta</th>
+                    <th>Adres</th>
+                    <th>Doğum Günü</th>
+                    <th>İl</th>
+                    <th>Mail İzin</th>
+                    <th>Kullanıcı Rol</th>
+                    <th>Detay</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="u in users | filter : us">
+                    <td>{{u.Ad}}</td>
+                    <td>{{u.Soyad}}</td>
+                    <td>{{u.TelNo}}</td>
+                    <td>{{u.Sifre}}</td>
+                    <td>{{u.Email}}</td>
+                    <td>{{u.Adres}}</td>
+                    <td>{{u.DogumGunu}}</td>
+                    <td>{{u.IlAd}}</td>
+                    <td>{{u.MailIzin}}</td>
+                    <td>{{u.KullaniciRol}}</td>
+                    <td><span class="btn btn-success glyphicon glyphicon-camera" ng-click="GetUserByUserID(u.KullaniciID)"></span></td>
+                    <td><span class="btn btn-danger glyphicon glyphicon-remove" ng-click="UserDelete(u.KullaniciID)"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="one">
+        <div ng-init="GetAllCities()">
+            <table class="table table-bordered table-hover table-responsive table-striped">
+                <tr>
+                    <th>Kullnıcı ID</th>
+                    <td>{{user.KullaniciID}}</td>
+                </tr>
+                <tr>
+                    <th>Ad</th>
+                    <td><input type="text" ng-model="user.Ad" /></td>
+                </tr>
+                <tr>
+                    <th>Soyad</th>
+                    <td><input type="text" ng-model="user.Soyad" /></td>
+                </tr>
+                <tr>
+                    <th>Tel No</th>
+                    <td><input type="text" ng-model="user.TelNo" /></td>
+                </tr>
+                <tr>
+                    <th>Şifre</th>
+                    <td><input type="text" ng-model="user.Sifre" /></td>
+                </tr>
+                <tr>
+                    <th>Eposta</th>
+                    <td><input type="text" ng-model="user.Email" /></td>
+                </tr>
+                <tr>
+                    <th>Adres</th>
+                    <td><input type="text" ng-model="user.Adres" /></td>
+                </tr>
+                <tr>
+                    <th>Doğum Günü</th>
+                    <td><input type="datetime-local" ng-model="user.DogumGunu" /></td>
+                </tr>
+                <tr>
+                    <th>İl</th>
+                    <td><select ng-options="item.IlID as item.IlAd for item in cities" ng-model="user.IlID"><option value=""></option></select></td>
+                </tr>
+                <tr>
+                    <th>Mail İzin</th>
+                    <td><input type="checkbox" ng-model="user.MailIzin" /></td>
+                </tr>
+                <tr>
+                    <th>Kullanıcı Rol</th>
+                    <td><input type="text" ng-model="user.KullaniciRol" /></td>
+                </tr>
+                <tr>
+                    <th>Güncelle/Kaydet</th>
+                    <td><span class="btn btn-info glyphicon glyphicon-floppy-save" ng-click="UserEdit(user)"></span></td>
+                </tr>
+                <tr>
+                    <th>Yeni Kayıt</th>
+                    <td><span class="btn btn-info glyphicon glyphicon-floppy-saved" ng-click="UserAdd(user)"></span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+

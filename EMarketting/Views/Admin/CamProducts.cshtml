@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "CamProducts";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+
+<style>
+    .one {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-right: 100px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
+</style>
+
+<div class="container" ng-init="GetAllCam()">
+    <div class="one">
+        <h1 class="page-header">Kampanyalı Ürünler <small>Kampanyalı Ürün İşlemleri</small></h1>
+    </div>
+    <div class="one">
+
+        <table class="table table-bordered table-hover table-responsive table-striped ">
+            <thead>
+                <tr>
+                    <th>Kampanyalı Ürün ID</th>
+                    <th>Kampanyalı Ürün Ad</th>
+                    <th>Fiyat</th>
+                    <th>Kampanya</th>
+                    <th>İndirim Oranı</th>
+                    <th>İndirimli Fiyat </th>
+                    <th> Kampanya Açıklama</th>
+                    <th>Detay</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="a in allcam">
+                    <td>{{a.AltUrunlerID}}</td>
+                    <td>{{a.AltUrunlerAd}}<br /></td>
+                    <td>{{a.Fiyat}}<br /></td>
+                    <td>{{a.Kampanya}}<br /></td>
+                    <td>{{a.IndirimOrani}}</td>
+                    <td> </td>
+                    <td>{{a.Aciklama}}</td>
+                    <td><span class="btn btn-success glyphicon glyphicon-camera" ng-click="GetCamByCamID(a.KampanyaID)"></span></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="one" ng-init="GetAllCam()">
+
+        <table class="table table-bordered table-hover table-responsive table-striped">
+
+            <tr>
+                <td>Kampanyalı Ürün ID</td>
+                <td>{{cam.AltUrunlerID}}</td>
+
+            </tr>
+            <tr>
+                <td>Indirim Oranı</td>
+                <td><input type="text" ng-model="cam.IndirimOrani" /></td>
+            </tr>
+            <tr>
+                <td>Kampanya Açıklama</td>
+                <td><input type="text" ng-model="cam.Aciklama" /></td>
+            </tr>
+
+
+
+            <tr>
+                <th>Güncelle/Kaydet</th>
+                <td><span class="btn btn-info glyphicon glyphicon-floppy-save" ng-click="CamEdit(cam)"></span></td>
+            </tr>
+
+        </table>
+    </div>
+
+</div>
+
+

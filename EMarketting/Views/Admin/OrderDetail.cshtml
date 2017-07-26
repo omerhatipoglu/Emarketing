@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "OrderDetail";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<style>
+    .one {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-right: 100px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
+</style>
+<div class="container" ng-init="GetAllDetailByOrderID(@Session["ID"])">
+    <div class="one">
+        <div>
+            <table class="table table-bordered table-hover table-responsive table-striped">
+                <tr><th colspan="2">SİPARİŞ DETAY</th></tr>
+                <tr>
+                    <th>SiparisID</th>
+                    <td>{{alldetail.s.SiparisID}}</td>
+                </tr>
+                <tr>
+                    <th>Ürün Ad</th>
+                    <td>{{alldetail.a.AltUrunlerAd}} </td>
+                </tr>
+                <tr>
+                    <th>Ürün Birim Fiyat</th>
+                    <td>{{alldetail.sd.Fiyat}}TL</td>
+                </tr>
+                <tr>
+                    <th>Sipariş Adeti</th>
+                    <td>{{alldetail.sd.SiparisAdeti}}</td>
+                </tr>
+                <tr>
+                    <th>Indirim Oranı</th>
+                    <td>%{{alldetail.sd.Indirim}}</td>
+                </tr>
+                <tr>
+                    <th>Toplam Fiyat</th>
+                    <td>{{(alldetail.sd.Fiyat*alldetail.sd.SiparisAdeti)-(((alldetail.sd.Fiyat*alldetail.sd.SiparisAdeti)*alldetail.sd.Indirim)/100)}}TL</td>
+                </tr>
+                <tr>
+                    <th>Ağırlık</th>
+                    <td>{{alldetail.s.Agirlik}}kg</td>
+                </tr>
+                <tr>
+                    <th>Siparis Tarihi</th>
+                    <td>{{alldetail.s.SiparisTarihi}}</td>
+                </tr>
+                <tr>
+                    <th>Postalandığı Tarih</th>
+                    <td>{{alldetail.s.PostalandigiTarih}}</td>
+                </tr>
+
+                <tr>
+                    <th>Müşteri Adı</th>
+                    <td>{{alldetail.k.Ad+" "+alldetail.k.Soyad}}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{alldetail.k.Email}}</td>
+                </tr>
+
+                <tr>
+                    <th>Gonderilen Adres</th>
+                    <td>{{alldetail.s.GonderilenAdres}}</td>
+                </tr>
+                <tr>
+                    <th>Gonderilen Sehir</th>
+                    <td>{{alldetail.s.GonderilenSehir}}</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
